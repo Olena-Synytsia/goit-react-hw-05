@@ -1,12 +1,11 @@
-// import { useState, useEffect } from "react";
 // import { api } from "../services/api.js";
-import MovieList from "../components/MovieList/MovieList.jsx";
+
+import MovieList from "../../components/MovieList/MovieList";
 
 const HomePage = () => {
   return (
     <div>
       <MovieList />
-      HomePage
     </div>
   );
 };

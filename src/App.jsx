@@ -1,20 +1,19 @@
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage.jsx";
-import MoviesPage from "./components/MovieCast/MovieCast.jsx";
-import MovieDetailsPage from "./pages/MovieDetailsPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
+import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation.jsx";
-
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import MoviesPage from "./pages/MoviesPage/MoviesPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import "./App.css";
 
 function App() {
   return (
     <div>
-      <HomePage />
-      <MoviesPage />
-      <MovieDetailsPage />
-      <NotFoundPage />
       <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
 }
