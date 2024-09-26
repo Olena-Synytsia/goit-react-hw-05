@@ -10,7 +10,22 @@ const api = axios.create({
 });
 
 export const fetchTrendingMovies = async () => {
-  const { data } = await api.get("/trending/movie/day?language=en-US");
-  console.log(data);
+  const { data } = await api.get(`/trending/movie/day?language=en-US`);
   return data.results;
+};
+
+export const fetchTrendingMovieById = async (movieId) => {
+  const { data } = await api.get(`/movie/${movieId}?language=en-US`);
+  console.log(data);
+  return data;
+};
+
+export const fetchTrendingMovieByIdImg = async (movieId) => {
+  const { data } = await api.get(`/movie/${movieId}?backdrop_path`);
+  return data;
+};
+
+export const fetchGenres = async () => {
+  const { data } = await api.get("/genre/movie/list?language=en-US");
+  return data.genres;
 };

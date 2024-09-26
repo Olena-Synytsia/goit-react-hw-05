@@ -1,5 +1,3 @@
-// import { api } from "../services/api.js";
-
 import MovieList from "../../components/MovieList/MovieList";
 
 const HomePage = () => {

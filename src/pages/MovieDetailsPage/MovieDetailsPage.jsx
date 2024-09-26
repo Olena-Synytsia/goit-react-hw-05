@@ -1,16 +1,68 @@
-// import { useParams } from "react-router-dom";
-// import { useState, useEffect } from "react";
-// import {api} from '../services/api.js'
-
-import MovieCast from "../../components/MovieCast/MovieCast.jsx";
-import MovieReviews from "../../components/MovieReviews/MovieReviews.jsx";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { fetchGenres, fetchTrendingMovieById } from "../../services/api";
 
 const MovieDetailsPage = () => {
+  const { movieId } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [genres, setGenres] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await fetchTrendingMovieById(movieId);
+        setMovie(data);
+      } catch {
+        setError("Failed to fetch movie.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, [movieId]);
+
+  useEffect(() => {
+    const getGenres = async () => {
+      try {
+        const addGenres = await fetchGenres();
+        setGenres(addGenres);
+      } catch {
+        setError("Failed to fetch genres.");
+      }
+    };
+    getGenres();
+  }, []);
+
+  if (loading) return <h2>Loading...</h2>;
+  if (error) return <h2>{error}</h2>;
+  if (!movie) return <h2>Loading...</h2>;
+
+  if (!Array.isArray(genres) || genres.length === 0) {
+    return <h2>No genres available.</h2>;
+  }
+
+  const movieGenres = movie.genres.map((genre) => genre.name).join(", ");
+
   return (
     <div>
-      <MovieCast />
-      <MovieReviews />
-      MovieDetailsPage
+      <Link to="/">Go back</Link>
+      <div>
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
+        <h2>
+          {movie.title} ({movie.release_date.split("-")[0]})
+        </h2>
+        <p>User score: {(movie.vote_average / 10) * 100} %</p>
+        <p>{movie.overview}</p>
+
+        <p>{movieGenres}</p>
+      </div>
     </div>
   );
 };
