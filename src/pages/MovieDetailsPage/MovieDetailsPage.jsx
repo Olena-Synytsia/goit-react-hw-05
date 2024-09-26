@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchGenres, fetchTrendingMovieById } from "../../services/api";
 
 const MovieDetailsPage = () => {
@@ -59,9 +59,16 @@ const MovieDetailsPage = () => {
           {movie.title} ({movie.release_date.split("-")[0]})
         </h2>
         <p>User score: {(movie.vote_average / 10) * 100} %</p>
-        <p>{movie.overview}</p>
+        <p>Overview: {movie.overview}</p>
 
-        <p>{movieGenres}</p>
+        <p>Genres: {movieGenres}</p>
+        <hr />
+        <div>
+          <h4>Additional information</h4>
+          <NavLink to="cast">Cast</NavLink>
+          <NavLink to="reviews">Reviews</NavLink>
+        </div>
+        <Outlet />
       </div>
     </div>
   );

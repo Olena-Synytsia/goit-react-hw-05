@@ -1,7 +1,7 @@
-// import s from "./MovieCast.module.css";
+import s from "./MovieCast.module.css";
 
-// const MovieCast = () => {
-//   return <div className={s.container}>MovieCast</div>;
-// };
+const MovieCast = () => {
+  return <div className={s.container}>Movie Cast</div>;
+};
 
-// export default MovieCast;
+export default MovieCast;
