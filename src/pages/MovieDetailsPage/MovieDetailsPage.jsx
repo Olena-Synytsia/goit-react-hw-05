@@ -58,7 +58,7 @@ const MovieDetailsPage = () => {
         <h2>
           {movie.title} ({movie.release_date.split("-")[0]})
         </h2>
-        <p>User score: {(movie.vote_average / 10) * 100} %</p>
+        <p>User score: {Math.round((movie.vote_average / 10) * 100)} %</p>
         <p>Overview: {movie.overview}</p>
 
         <p>Genres: {movieGenres}</p>

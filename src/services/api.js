@@ -16,7 +16,7 @@ export const fetchTrendingMovies = async () => {
 
 export const fetchTrendingMovieById = async (movieId) => {
   const { data } = await api.get(`/movie/${movieId}?language=en-US`);
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -28,4 +28,10 @@ export const fetchTrendingMovieByIdImg = async (movieId) => {
 export const fetchGenres = async () => {
   const { data } = await api.get("/genre/movie/list?language=en-US");
   return data.genres;
+};
+
+export const fetchInfoActorsById = async (movieId) => {
+  const { data } = await api.get(`/movie/${movieId}/credits?language=en-US`);
+  console.log(data.cast);
+  return data;
 };
