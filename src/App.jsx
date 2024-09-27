@@ -6,6 +6,7 @@ import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage.jsx";
 import MovieCast from "./components/MovieCast/MovieCast.jsx";
 import MovieReviews from "./components/MovieReviews/MovieReviews.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
+import ScrollUp from "./components/ScrollUp/ScrollUp.jsx";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <ScrollUp />
     </div>
   );
 }

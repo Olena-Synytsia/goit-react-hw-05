@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchGenres, fetchTrendingMovieById } from "../../services/api";
+import Loader from "../../components/Loader/Loader.jsx";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -37,9 +38,9 @@ const MovieDetailsPage = () => {
     getGenres();
   }, []);
 
-  if (loading) return <h2>Loading...</h2>;
+  if (loading) return <Loader />;
   if (error) return <h2>{error}</h2>;
-  if (!movie) return <h2>Loading...</h2>;
+  if (!movie) return <Loader />;
 
   if (!Array.isArray(genres) || genres.length === 0) {
     return <h2>No genres available.</h2>;
@@ -68,7 +69,9 @@ const MovieDetailsPage = () => {
           <NavLink to="cast">Cast</NavLink>
           <NavLink to="reviews">Reviews</NavLink>
         </div>
-        <Outlet />
+        <div>
+          <Outlet />
+        </div>
       </div>
     </div>
   );

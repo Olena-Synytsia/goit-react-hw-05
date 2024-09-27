@@ -1,24 +1,31 @@
 import { useEffect, useState } from "react";
 import { fetchInfoActorsById } from "../../services/api.js";
-import s from "./MovieCast.module.css";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader.jsx";
+import s from "./MovieCast.module.css";
 
 const MovieCast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
+      setLoading(true);
       try {
         const data = await fetchInfoActorsById(movieId);
         setCast(data.cast);
       } catch {
         setError("Error fetching cast");
+      } finally {
+        setLoading(false);
       }
     };
     getData();
   }, [movieId]);
+
+  if (loading) return <Loader />;
 
   return (
     <div className={s.container}>

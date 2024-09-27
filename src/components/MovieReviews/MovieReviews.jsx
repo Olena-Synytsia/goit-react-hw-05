@@ -1,7 +1,42 @@
+import { useEffect, useState } from "react";
+import { fetchReviewsById } from "../../services/api";
+import { useParams } from "react-router-dom";
 import s from "./MovieReviews.module.css";
 
 const MovieReviews = () => {
-  return <div className={s.container}>MovieReviews</div>;
+  const { movieId } = useParams();
+  const [reviews, setReviews] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await fetchReviewsById(movieId);
+        setReviews(data);
+      } catch {
+        setError("Error fetching reviews");
+      }
+    };
+    getData();
+  }, [movieId]);
+
+  if (!reviews) return;
+
+  return (
+    <div className={s.container}>
+      <ul>
+        {error && <p>{error}</p>}
+        {reviews.length > 0
+          ? reviews.map((review) => (
+              <li key={review.id}>
+                <h2>Author: {review.author}</h2>
+                <p>{review.content}</p>
+              </li>
+            ))
+          : !error && <p>We don{"'"}t have any reviews for this movie</p>}
+      </ul>
+    </div>
+  );
 };
 
 export default MovieReviews;

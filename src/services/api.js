@@ -16,7 +16,6 @@ export const fetchTrendingMovies = async () => {
 
 export const fetchTrendingMovieById = async (movieId) => {
   const { data } = await api.get(`/movie/${movieId}?language=en-US`);
-  // console.log(data);
   return data;
 };
 
@@ -32,6 +31,20 @@ export const fetchGenres = async () => {
 
 export const fetchInfoActorsById = async (movieId) => {
   const { data } = await api.get(`/movie/${movieId}/credits?language=en-US`);
-  console.log(data.cast);
   return data;
+};
+
+export const fetchReviewsById = async (movieId) => {
+  const { data } = await api.get(
+    `/movie/${movieId}/reviews?language=en-US&page=1`
+  );
+  return data.results;
+};
+
+export const searchByKeyword = async () => {
+  const { data } = await api.get(
+    `/search/movie?include_adult=false&language=en-US&page=1`
+  );
+  console.log(data);
+  return data.results;
 };

@@ -1,12 +1,11 @@
-// import MovieList from "../components/MovieList/MovieList.jsx";
+// import { useEffect, useState } from "react";
 
 const MoviesPage = () => {
-  return (
-    <div>
-      {/* <MovieList /> */}
-      Movies
-    </div>
-  );
+  // const [query, setQuery] = useState("");
+  // console.log(query);
+  // console.log(setQuery);
+  // useEffect(() => {});
+  return <div>Movies</div>;
 };
 
 export default MoviesPage;
