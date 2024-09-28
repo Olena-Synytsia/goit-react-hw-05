@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import s from "./MovieList.module.css";
 
 const MovieList = ({ movies = [] }) => {
+  console.log(movies);
   return (
     <div className={s.container}>
       <ul>

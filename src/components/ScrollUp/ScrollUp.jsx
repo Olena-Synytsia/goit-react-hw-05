@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BiSolidChevronsUp } from "react-icons/bi";
 import s from "./ScrollUp.module.css"; // Стилі для кнопки
 
 const ScrollUp = () => {
@@ -32,7 +33,7 @@ const ScrollUp = () => {
       onClick={handleScrollUp}
       className={`${s.scrollUp} ${visible ? s.visible : ""}`}
     >
-      Scroll to Up
+      <BiSolidChevronsUp size={34} />
     </button>
   );
 };

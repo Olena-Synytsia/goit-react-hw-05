@@ -41,9 +41,9 @@ export const fetchReviewsById = async (movieId) => {
   return data.results;
 };
 
-export const searchByKeyword = async () => {
+export const searchMovieByKeyword = async (query) => {
   const { data } = await api.get(
-    `/search/movie?include_adult=false&language=en-US&page=1`
+    `/search/movie?include_adult=false&language=en-US&page=1&query=${query}`
   );
   console.log(data);
   return data.results;
