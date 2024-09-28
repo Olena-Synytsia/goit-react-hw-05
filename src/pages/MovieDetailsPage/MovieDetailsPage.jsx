@@ -1,5 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useParams } from "react-router-dom";
+import { useEffect, useState, useRef, Suspense } from "react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { fetchGenres, fetchTrendingMovieById } from "../../services/api";
 import Loader from "../../components/Loader/Loader.jsx";
 
@@ -9,6 +15,9 @@ const MovieDetailsPage = () => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const location = useLocation();
+  const stateRef = useRef(location.state);
+  const linkGoBack = stateRef.current ?? "/movies";
 
   useEffect(() => {
     const getData = async () => {
@@ -50,7 +59,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <Link to="/">Go back</Link>
+      <Link to={linkGoBack}>Go back</Link>
       <div>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -70,7 +79,9 @@ const MovieDetailsPage = () => {
           <NavLink to="reviews">Reviews</NavLink>
         </div>
         <div>
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </div>
       </div>
     </div>

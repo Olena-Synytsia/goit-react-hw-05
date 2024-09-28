@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { searchMovieByKeyword } from "../../services/api";
 import { useSearchParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import Loader from "../../components/Loader/Loader.jsx";
 import MovieList from "../../components/MovieList/MovieList.jsx";
+import s from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,9 +21,10 @@ const MoviesPage = () => {
   };
 
   const handleSubmit = (values) => {
-    console.log(loading);
-    console.log(error);
-    console.log(values.query);
+    if (values.query.trim() === "") {
+      toast.error("Enter your query");
+      return;
+    }
     setQuery(values.query);
     searchParams.set("query", values.query);
     setSearchParams(searchParams);
@@ -33,9 +37,13 @@ const MoviesPage = () => {
         setError(null);
         try {
           const data = await searchMovieByKeyword(query);
-          setMovies(data);
+          if (!data || data.length === 0) {
+            toast.error("No movies found");
+          } else {
+            setMovies(data);
+          }
         } catch {
-          setError("Failed to fetch movie.");
+          toast.error("Failed to fetch movie");
         } finally {
           setLoading(false);
         }
@@ -45,20 +53,25 @@ const MoviesPage = () => {
     }
   }, [query]);
 
+  if (loading) return <Loader />;
+  if (error) return <h2>{error}</h2>;
+
   return (
-    <div>
-      <h2>Поиск фильмов</h2>
+    <div className={s.container}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form>
-          <Field name="query" />
-          <button type="submit">Search</button>
+        <Form className={s.form}>
+          <Field
+            className={s.input}
+            name="query"
+            placeholder="Enter your query"
+          />
+          <button className={s.btn} type="submit">
+            Search
+          </button>
         </Form>
       </Formik>
-      {query.length > 0 ? (
-        <MovieList movies={movies} />
-      ) : (
-        <p>Введіть запит для пошуку фільмів</p>
-      )}
+      <MovieList movies={movies} />
+      <Toaster position="top-right" />
     </div>
   );
 };

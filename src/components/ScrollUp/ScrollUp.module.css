@@ -3,10 +3,10 @@
   bottom: 20px;
   right: 20px;
   padding: 10px;
-  background-color: #007bff;
+  background-color: teal;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
@@ -17,4 +17,8 @@
 
 .scrollUp:not(.visible) {
   opacity: 0;
+}
+
+.scrollUp:focus {
+  outline: white;
 }

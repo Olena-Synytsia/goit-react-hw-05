@@ -36,7 +36,7 @@ const MovieCast = () => {
                 <img
                   src={
                     actor.profile_path
-                      ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                      ? `https://image.tmdb.org/t/p/w300${actor.profile_path}`
                       : `https://dummyimage.com/500x300/008f91/fafafa.jpg&text=No+images+available`
                   }
                   alt={actor.name || "No image available"}

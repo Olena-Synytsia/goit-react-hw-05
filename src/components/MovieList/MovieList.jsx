@@ -1,22 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import s from "./MovieList.module.css";
 
-const MovieList = ({ movies = [] }) => {
+const MovieList = ({ movies = [], customClass }) => {
+  const location = useLocation();
   console.log(movies);
   return (
     <div className={s.container}>
-      <ul>
-        {movies.length > 0 ? (
-          movies.map((movie) => (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id.toString()}`}>
-                <p>{movie.title}</p>
-              </Link>
-            </li>
-          ))
-        ) : (
-          <p>No movies found</p>
-        )}
+      <ul className={customClass}>
+        {movies.map((movie) => (
+          <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`} state={location}>
+              {movie.title}{" "}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

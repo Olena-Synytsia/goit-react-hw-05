@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BiSolidChevronsUp } from "react-icons/bi";
-import s from "./ScrollUp.module.css"; // Стилі для кнопки
+import s from "./ScrollUp.module.css";
 
 const ScrollUp = () => {
   const [visible, setVisible] = useState(false);
