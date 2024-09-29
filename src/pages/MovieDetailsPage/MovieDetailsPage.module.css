@@ -7,6 +7,10 @@
   color: whitesmoke;
 }
 
+.container a:hover {
+  color: teal;
+}
+
 .card {
   padding: 20px 0;
 }

@@ -9,3 +9,7 @@ li {
 .link {
   color: whitesmoke;
 }
+
+.link:hover {
+  color: teal;
+}
