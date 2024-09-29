@@ -70,7 +70,7 @@ const MoviesPage = () => {
           </button>
         </Form>
       </Formik>
-      <MovieList movies={movies} />
+      <MovieList movies={movies} customClass={s.customUl} />
       <Toaster position="top-right" />
     </div>
   );

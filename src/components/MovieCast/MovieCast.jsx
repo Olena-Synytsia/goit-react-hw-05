@@ -29,15 +29,15 @@ const MovieCast = () => {
 
   return (
     <div className={s.container}>
-      <ul>
+      <ul className={s.movie_cast}>
         {cast.length > 0
           ? cast.map((actor) => (
-              <li key={actor.id}>
+              <li key={actor.id} className={s.movies_cast_li}>
                 <img
                   src={
                     actor.profile_path
                       ? `https://image.tmdb.org/t/p/w300${actor.profile_path}`
-                      : `https://dummyimage.com/500x300/008f91/fafafa.jpg&text=No+images+available`
+                      : `https://dummyimage.com/300x450/b0b0b0/000000.jpg&text=No+images+available`
                   }
                   alt={actor.name || "No image available"}
                   className={s.actorImage}

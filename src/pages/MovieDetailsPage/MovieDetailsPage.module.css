@@ -1,0 +1,53 @@
+.container {
+  text-align: start;
+  padding: 20px 0;
+}
+
+.link_back {
+  color: whitesmoke;
+}
+
+.card {
+  padding: 20px 0;
+}
+
+.context {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
+}
+
+.context_item {
+  padding: 0 20px;
+  line-height: 2;
+}
+
+.title {
+  color: whitesmoke;
+}
+
+.text {
+  color: whitesmoke;
+}
+
+.title_info {
+  color: whitesmoke;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link {
+  color: whitesmoke;
+  font-weight: bold;
+}
+.activeLink {
+  color: lightseagreen;
+}
+
+.nav a:hover {
+  color: teal;
+}

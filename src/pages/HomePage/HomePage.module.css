@@ -1,3 +1,12 @@
 .container {
   width: 100%;
+  text-align: start;
+  color: lightseagreen;
+  padding: 20px 0;
+}
+
+.customUl {
+  list-style: none;
+  color: whitesmoke;
+  padding: 0;
 }

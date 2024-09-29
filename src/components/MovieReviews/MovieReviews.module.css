@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+}
+
+.container ul {
+  padding-inline-start: 0;
+}
+
+.reviews_li {
+  list-style: none;
+  color: whitesmoke;
+  padding: 0;
+  text-align: justify;
+}
+
+.title {
+  color: teal;
+}

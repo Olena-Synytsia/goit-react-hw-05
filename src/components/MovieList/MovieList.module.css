@@ -3,5 +3,9 @@
 }
 
 li {
-  color: white;
+  padding: 8px;
+}
+
+.link {
+  color: whitesmoke;
 }

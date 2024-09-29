@@ -1,0 +1,8 @@
+.container h1 {
+  color: rgb(212, 1, 1);
+  font-size: 52px;
+}
+
+.container {
+  padding: 60px;
+}

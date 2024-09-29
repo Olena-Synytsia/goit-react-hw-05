@@ -9,7 +9,11 @@ const MovieList = ({ movies = [], customClass }) => {
       <ul className={customClass}>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`} state={location}>
+            <Link
+              to={`/movies/${movie.id}`}
+              state={location}
+              className={s.link}
+            >
               {movie.title}{" "}
             </Link>
           </li>

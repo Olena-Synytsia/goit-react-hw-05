@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import "animate.css";
+import s from "./NotFoundPage.module.css";
 
 const NotFoundPage = () => {
   return (
-    <div>
-      <h1>Not Found Page - 404</h1>
-      <Link to="/">Nome</Link>
+    <div className={s.container}>
+      <h1 className={`animate__animated animate__backInDown`}>
+        Not Found Page - 404
+      </h1>
     </div>
   );
 };

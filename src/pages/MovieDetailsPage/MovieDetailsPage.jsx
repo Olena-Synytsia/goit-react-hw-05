@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import { fetchGenres, fetchTrendingMovieById } from "../../services/api";
 import Loader from "../../components/Loader/Loader.jsx";
+import clsx from "clsx";
+import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -47,6 +49,10 @@ const MovieDetailsPage = () => {
     getGenres();
   }, []);
 
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(s.link, isActive && s.activeLink);
+  };
+
   if (loading) return <Loader />;
   if (error) return <h2>{error}</h2>;
   if (!movie) return <Loader />;
@@ -58,25 +64,39 @@ const MovieDetailsPage = () => {
   const movieGenres = movie.genres.map((genre) => genre.name).join(", ");
 
   return (
-    <div>
-      <Link to={linkGoBack}>Go back</Link>
-      <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
-        />
-        <h2>
-          {movie.title} ({movie.release_date.split("-")[0]})
-        </h2>
-        <p>User score: {Math.round((movie.vote_average / 10) * 100)} %</p>
-        <p>Overview: {movie.overview}</p>
+    <div className={s.container}>
+      <Link to={linkGoBack} className={s.link_back}>
+        Go back
+      </Link>
+      <div className={s.card}>
+        <div className={s.context}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+          />
+          <div className={s.context_item}>
+            <h2 className={s.title}>
+              {movie.title} ({movie.release_date.split("-")[0]})
+            </h2>
+            <p className={s.text}>
+              User score: {Math.round((movie.vote_average / 10) * 100)} %
+            </p>
+            <p className={s.text}>Overview: {movie.overview}</p>
 
-        <p>Genres: {movieGenres}</p>
+            <p className={s.text}>Genres: {movieGenres}</p>
+          </div>
+        </div>
         <hr />
         <div>
-          <h4>Additional information</h4>
-          <NavLink to="cast">Cast</NavLink>
-          <NavLink to="reviews">Reviews</NavLink>
+          <h3 className={s.title_info}>Additional information</h3>
+          <div className={s.nav}>
+            <NavLink className={buildLinkClass} to="cast">
+              Cast
+            </NavLink>
+            <NavLink className={buildLinkClass} to="reviews">
+              Reviews
+            </NavLink>
+          </div>
         </div>
         <div>
           <Suspense fallback={<Loader />}>

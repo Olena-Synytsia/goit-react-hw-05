@@ -16,8 +16,8 @@ const HomePage = () => {
 
   return (
     <div className={s.container}>
-      <h1>Trending Movies Today</h1>
-      <MovieList movies={movies} />
+      <h1>Trending movies today</h1>
+      <MovieList movies={movies} customClass={s.customUl} />
     </div>
   );
 };
