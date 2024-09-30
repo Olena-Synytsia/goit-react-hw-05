@@ -71,7 +71,11 @@ const MovieDetailsPage = () => {
       <div className={s.card}>
         <div className={s.context}>
           <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : "https://dummyimage.com/500x706/b0b0b0/000000.jpg&text=No+image+available"
+            }
             alt={movie.title}
           />
           <div className={s.context_item}>

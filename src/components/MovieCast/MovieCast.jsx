@@ -49,7 +49,9 @@ const MovieCast = () => {
                 </p>
               </li>
             ))
-          : !error && <p>No information about the cast</p>}
+          : !error && (
+              <p className={s.errorMessage}>No information about the cast</p>
+            )}
       </ul>
     </div>
   );

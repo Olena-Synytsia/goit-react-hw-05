@@ -19,3 +19,7 @@
   width: 300px;
   text-align: center;
 }
+
+.errorMessage {
+  color: white;
+}
