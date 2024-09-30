@@ -20,8 +20,6 @@ const MovieReviews = () => {
     getData();
   }, [movieId]);
 
-  if (!reviews) return;
-
   return (
     <div className={s.container}>
       <ul>
