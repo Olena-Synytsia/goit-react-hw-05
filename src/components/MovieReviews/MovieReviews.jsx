@@ -23,7 +23,7 @@ const MovieReviews = () => {
   return (
     <div className={s.container}>
       <ul>
-        {error && <p>{error}</p>}
+        {error && <p className={s.errorMessage}> {error}</p>}
         {reviews.length > 0
           ? reviews.map((review) => (
               <li key={review.id} className={s.reviews_li}>
@@ -31,7 +31,11 @@ const MovieReviews = () => {
                 <p>{review.content}</p>
               </li>
             ))
-          : !error && <p>We don{"'"}t have any reviews for this movie</p>}
+          : !error && (
+              <p className={s.errorMessage}>
+                We don{"'"}t have any reviews for this movie
+              </p>
+            )}
       </ul>
     </div>
   );
